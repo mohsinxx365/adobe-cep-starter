@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const pluginConfig = require('../pluginrc');
 const buildFolder = path.join(pluginConfig.destinationFolder, pluginConfig.extensionBundleId);
-const clientOutput = path.resolve(buildFolder, 'client');
-const clientEntry = path.resolve(__dirname, '../client/index.tsx');
-const htmlTemplate = path.join(__dirname, 'templates/index.template.html');
+const client_output = path.resolve(buildFolder, 'client');
+const client_entry = path.resolve(__dirname, '../client/index.tsx');
+const html_template = path.join(__dirname, 'templates/index.template.html');
 
 module.exports = ({
-	entry: clientEntry,
+	entry: client_entry,
 	target: 'web',
 	module: {
 		rules: [
@@ -72,13 +72,13 @@ module.exports = ({
 		extensions: ['*', '.js', '.jsx', 'tsx', 'ts', '.scss']
 	},
 	output: {
-		path: clientOutput,
+		path: client_output,
 		publicPath: '',
 		filename: 'bundle.js'
 	},
 	devtool: 'source-map',
 	devServer: {
-		contentBase: clientOutput
+		contentBase: client_output
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
@@ -86,11 +86,11 @@ module.exports = ({
 			chunkFilename: '[id].css'
 		}),
 		new HtmlWebpackPlugin({
-			template: htmlTemplate,
+			template: html_template,
 			filename: 'index.html',
 			inject: 'body',
 			title: 'HTML Webpack Plugin',
 			bar: 'bar'
-		})
+		}),
 	]
 });
