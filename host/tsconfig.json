@@ -8,7 +8,7 @@
         "jsx": "preserve",
         "strict": true,
         "target": "es3",
-        "outFile": "../dist/index.jsx"
+        "outFile": "../build/index.jsx"
     },
     "include": [
         "./**/*"
