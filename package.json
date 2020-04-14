@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install:nps": "npm i -g nps"
+    "start": "webpack-dev-server --config ./config/webpack.client.js --env.target=web --mode development --open"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +33,6 @@
     "mini-css-extract-plugin": "^0.9.0",
     "mkdirp": "^1.0.4",
     "node-sass": "^4.13.1",
-    "nps": "^5.9.12",
     "sass-loader": "^8.0.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
