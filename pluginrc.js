@@ -1,6 +1,6 @@
 const path = require("path");
 const root = __dirname;
-const buildFolder = path.join(root, "dist");
+const buildFolder = path.join(root, "build");
 const certPath = path.join(buildFolder, "cert.p12");
 
 module.exports = {

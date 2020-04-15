@@ -99,8 +99,4 @@ if (typeof JSON !== 'object') {
         } throw new SyntaxError('JSON.parse'); };
     }
 }());
-alert('the next test');
-var test = 'hello';
-alert(test);
 alert('hello ts');
-alert('another test');

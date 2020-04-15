@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.client.js --env.target=web --mode development --open",
+    "client": "webpack --config ./config/webpack.client.js   --display minimal --display-chunks --env.target=node --mode development",
     "tsc": "tsc -p ./host/tsconfig.json"
   },
   "keywords": [],
