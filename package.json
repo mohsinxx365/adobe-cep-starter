@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.client.js --env.target=web --mode development --open",
-    "tscript": "webpack --config ./config/webpack.host.js  --display minimal --display-chunks --env.target=web --mode development"
+    "tsc": "tsc -p ./host/tsconfig.json"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,8 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "cache-loader": "^4.1.0",

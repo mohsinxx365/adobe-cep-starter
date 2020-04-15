@@ -2,15 +2,22 @@
     "compilerOptions": {
         "allowJs": true,
         "lib": [
-            "es5"
+            "es5",
+            "ES2015.Core",
+            "DOM"
         ],
         "module": "none",
         "jsx": "preserve",
-        "strict": true,
         "target": "es3",
-        "outFile": "../build/index.jsx"
+        "outFile": "../build/index.jsx",
+        "removeComments": true,
+        "skipLibCheck": true,
+        "noImplicitUseStrict": true
     },
+    "exclude": [
+        "node_modules"
+    ],
     "include": [
         "./**/*"
-    ]
+    ],
 }
