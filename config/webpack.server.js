@@ -57,7 +57,9 @@ module.exports = (env) => ({
     devtool: 'source-map',
     plugins: [
         new CopyWebpackPlugin([
-            { from: path.join(server_entry, 'node_modules'), to: '../node_modules' }
+            {
+                from: path.join(server_entry, 'node_modules'), to: '../node_modules', cache: true,
+            }
         ])
     ]
 })
