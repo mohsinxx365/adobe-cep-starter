@@ -28,11 +28,15 @@ console.log(chalk.hex('61afef')(`BUILD For ${env}`));
 build();
 function build() {
     try {
-        utils.log_progress('cleaning build folder....');
-        fs.removeSync(buildFolder);
 
-        fs.mkdirSync(buildFolder);
-        fs.mkdirSync(pluginFolder);
+        utils.log_progress('build folder....');
+
+        if (!fs.existsSync(buildFolder)) {
+            fs.mkdirSync(buildFolder);
+        } else {
+            fs.emptyDirSync(buildFolder);
+            fs.mkdirSync(pluginFolder);
+        }
 
         utils.log_progress('bundeling client...');
         execSync(`webpack --config ${webpack_client_path}  --display minimal --display-chunks --env.target=node --mode ${env}`, { stdio: [0, 1, 2] })
@@ -40,7 +44,7 @@ function build() {
         utils.log_progress('bundeling server...')
         execSync(`webpack --config ${webpack_server_path} --display minimal --display-chunks --env.target=node --mode ${env}`, { stdio: [0, 1, 2] })
 
-        execSync(`tsc -p ${host_config_path}`);
+        execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/index.jsx`);
 
         utils.log_progress('copying libs folder...');
         fs.copySync(inRootDir('libs'), inBuildPath('libs'));
@@ -77,4 +81,4 @@ const endTime = Date.now();
 let timeDiff = endTime - startTime;
 timeDiff /= 1000;
 
-console.log(chalk.hex('80FFBB')(`${timeDiff}s`))
+console.log(chalk["cyan"].dim(`${timeDiff}s`))

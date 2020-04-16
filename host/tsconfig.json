@@ -9,7 +9,6 @@
         "module": "none",
         "jsx": "preserve",
         "target": "es3",
-        "outFile": "../build/index.jsx",
         "removeComments": true,
         "skipLibCheck": true,
         "noImplicitUseStrict": true
