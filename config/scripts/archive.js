@@ -14,23 +14,18 @@ const chalk = require('chalk');
 const startTime = Date.now();
 archive()
 
-
-
 function archive() {
     console.log(chalk.hex('6bb9f0')(`ARCHIVE`));
     prepareCert()
         .then(signPackage)
         .then(res => {
-            console.log(chalk.hex('6bb9f0')(`package is signed: ${zxpFile}`));
-            console.log(chalk.hex('61AFEF')('DONE'))
+            const endTime = Date.now();
+            let timeDiff = endTime - startTime;
+            timeDiff /= 1000;
+            console.log(chalk.hex('f7ca18')(`Package is signed: ${zxpFile}`))
+            console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
         })
         .catch(err => { utils.log_error(err) })
-
-    const endTime = Date.now();
-    let timeDiff = endTime - startTime;
-    timeDiff /= 1000;
-    console.log(chalk.hex('23D18B')(`package is signed: ${zxpFile}`))
-    console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
 }
 
 function prepareCert() {
@@ -67,7 +62,7 @@ function prepareCert() {
             utils.log_progress('found a custom certificate')
             resolve(data)
         } else {
-            utils.log_progress('generating a self signed certificate')
+            utils.log_progress('generating a self signed certificate...')
             zxpSignCmd.selfSignedCert(options_self_sign, function (error, result) {
                 if (error) reject(error)
                 else resolve(data)
@@ -76,7 +71,7 @@ function prepareCert() {
     })
 }
 
-function signPackage() {
+function signPackage(cert) {
     const options = {
         input: pluginFolder,
         output: zxpFile,
@@ -88,7 +83,6 @@ function signPackage() {
         zxpSignCmd.sign(options, function (error, result) {
             if (error) reject(error)
             else resolve(result)
-
         })
 
     })

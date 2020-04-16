@@ -13,7 +13,6 @@ const extensionBundleId = pluginConfig.extensionBundleId;
 const resolvedTargetFolder = resolveDeploymentFolder();
 
 
-
 const startTime = Date.now();
 deploy();
 
@@ -34,7 +33,9 @@ function deploy() {
     console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
 }
 
-
+function printDeploymentFolder() {
+    console.log(chalk.hex('f7ca18')(`Deployed to folder ${resolvedTargetFolder}`));
+}
 
 function resolveDeploymentFolder() {
     return path.join(resolveExtensionFolder(), extensionBundleId)
@@ -55,7 +56,6 @@ function resolveExtensionFolder() {
 
 function cleanTarget(target) {
     utils.log_progress('cleaning target...');
-
     try {
         if (fs.existsSync(target) && fs.lstatSync(target).isSymbolicLink())
             fs.unlinkSync(target)
@@ -78,6 +78,17 @@ function deployDevMode() {
     } catch (err) {
         utils.log_error(err)
     }
+
+    utils.log_progress('creating symlink into extensions folder...');
+
+    try {
+        var type = isWindows ? 'junction' : 'dir'
+
+        fs.symlinkSync(buildFolder, resolvedTargetFolder, type)
+    } catch (err) {
+        utils.log_error(err)
+    }
+
 }
 
 function deployProdMode() {
@@ -87,8 +98,4 @@ function deployProdMode() {
     } catch (err) {
         utils.log_error(err)
     }
-}
-
-function printDeploymentFolder() {
-    console.log(chalk.hex('f7ca18')(`Deployed to folder ${resolvedTargetFolder}`));
 }
