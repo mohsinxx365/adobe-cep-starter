@@ -5,7 +5,7 @@ const pluginConfig = require('../pluginrc');
 const buildFolder = path.join(pluginConfig.destinationFolder, pluginConfig.extensionBundleId);
 const client_output = path.resolve(buildFolder, 'client');
 const client_entry = path.resolve(__dirname, '../client/index.tsx');
-const html_template = path.join(__dirname, 'templates/index.template.html');
+const html_template = path.join(__dirname, './assets/templates/index.template.html');
 
 module.exports = ({
 	entry: client_entry,
