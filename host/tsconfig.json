@@ -3,13 +3,13 @@
         "allowJs": true,
         "lib": [
             "es5",
-            "ES2015.Core",
-            "DOM"
+            "DOM",
+            "ES2015"
         ],
         "module": "none",
         "jsx": "preserve",
         "target": "es3",
-        "outDir": "../build/host",
+        "outFile": "../build/index.jsx",
         "removeComments": true,
         "skipLibCheck": true,
         "noImplicitUseStrict": true
