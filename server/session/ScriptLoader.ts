@@ -22,15 +22,6 @@ class ScriptLoader {
         return "ScriptLoader:: ";
     }
 
-
-    loadJSX(fileName: string) {
-        let cs = this.cs;
-        //@ts-ignore
-        let extensionRoot = cs.getSystemPath(SystemPath.EXTENSION) + "/host/";
-
-        cs.evalScript('$.evalFile("' + extensionRoot + fileName + '")');
-    }
-
     evalScript(functionName: string, params: string | object) {
         const params_string = typeof params === "string"
             ? params : typeof params === "object"

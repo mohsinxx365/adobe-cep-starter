@@ -15,10 +15,20 @@ class Session {
         return "Session:: ";
     }
 
+    get managers() {
+        return this._managers
+    }
+
+    scriptLoader() {
+        return scriptLoader
+    }
 
     init() {
         this._managers.init();
-        this.log("session is initiating...");
-        this.log("loading the main ")
+        this.log("session has initiated");
     }
 }
+
+let session = new Session();
+
+export default session;
