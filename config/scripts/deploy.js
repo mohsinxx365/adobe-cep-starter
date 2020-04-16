@@ -67,7 +67,7 @@ function cleanTarget(target) {
 
 function deployDevMode() {
     try {
-        utils.log_progress('patching')
+        utils.log_progress('patching...')
         if (isWindows) {
             execSync('REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.8 /v PlayerDebugMode /t REG_SZ /d 1 /f') // CC 2018
             execSync('REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.9 /v PlayerDebugMode /t REG_SZ /d 1 /f') // CC 2019 & 2020
@@ -81,10 +81,9 @@ function deployDevMode() {
 }
 
 function deployProdMode() {
-    utils.log_progress('copying into extensions folder')
+    utils.log_progress('copying into extensions folder...')
     try {
         fs.copySync(buildFolder, resolvedTargetFolder)
-
     } catch (err) {
         utils.log_error(err)
     }

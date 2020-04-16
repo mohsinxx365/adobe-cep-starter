@@ -14,7 +14,26 @@ const chalk = require('chalk');
 const startTime = Date.now();
 archive()
 
-const prepareCert = () => {
+
+
+function archive() {
+    console.log(chalk.hex('6bb9f0')(`ARCHIVE`));
+    prepareCert()
+        .then(signPackage)
+        .then(res => {
+            console.log(chalk.hex('6bb9f0')(`package is signed: ${zxpFile}`));
+            console.log(chalk.hex('61AFEF')('DONE'))
+        })
+        .catch(err => { utils.log_error(err) })
+
+    const endTime = Date.now();
+    let timeDiff = endTime - startTime;
+    timeDiff /= 1000;
+    console.log(chalk.hex('23D18B')(`package is signed: ${zxpFile}`))
+    console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
+}
+
+function prepareCert() {
     const options_custom_cert = certificate_options.customCert
     const options_self_sign = certificate_options.selfSign
     const isCustom = options_custom_cert && options_custom_cert.path.trim() !== ''
@@ -42,10 +61,8 @@ const prepareCert = () => {
     return new Promise((resolve, reject) => {
         if (!isValid) {
             reject('no valid cert info')
-
             return
         }
-
         if (isCustom) {
             utils.log_progress('found a custom certificate')
             resolve(data)
@@ -59,7 +76,7 @@ const prepareCert = () => {
     })
 }
 
-const signPackage = () => {
+function signPackage() {
     const options = {
         input: pluginFolder,
         output: zxpFile,
@@ -75,19 +92,4 @@ const signPackage = () => {
         })
 
     })
-}
-
-const archive = () => {
-    console.log(chalk.hex('6bb9f0')(`ARCHIVE`));
-
-    prepareCert.then(signPackage).then(res => {
-        console.log(chalk.hex('6bb9f0')(`package is signed: ${zxpFile}`));
-        console.log(chalk.hex('61AFEF')('DONE'))
-    }).catch(err => utils.log_error(err));
-
-    const endTime = Date.now();
-    let timeDiff = endTime - startTime;
-    timeDiff /= 1000;
-    console.log(chalk.hex('23D18B')(`package is signed: ${zxpFile}`))
-    console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
 }

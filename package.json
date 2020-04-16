@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.client.js --env.target=web --mode development --open",
-    "build:dev": "node ./config/scripts/build.js development && node ./config/scripts/deploy.js development",
-    "build:prod": "node ./config/scripts/build.js production && node ./config/scripts/deploy.js production"
+    "build:dev": "node ./config/scripts/build.js development && node ./config/scripts/deploy.js development ",
+    "build:prod": "node ./config/scripts/build.js production && node ./config/scripts/deploy.js production && node ./config/scripts/archive.js"
   },
   "keywords": [],
   "author": "",
