@@ -14,8 +14,8 @@ const webpack_client_path = path.join(__dirname, '../webpack.client.js');
 const webpack_server_path = path.join(__dirname, '../webpack.server.js');
 const host_config_path = path.join(__dirname, '../../host/tsconfig.json');
 
-
 const startTime = Date.now();
+
 const inBuildPath = (val) => {
     return path.join(pluginFolder, val)
 }
@@ -24,8 +24,10 @@ const inRootDir = (val) => {
     return path.join(rootFolder, val)
 }
 
-console.log(chalk.hex('61afef')(`BUILD For ${env}`));
+console.log(chalk.hex('6bb9f0')(`BUILD FOR ${env.toUpperCase()}`));
+
 build();
+
 function build() {
     try {
 
@@ -44,7 +46,7 @@ function build() {
         utils.log_progress('bundeling server...')
         execSync(`webpack --config ${webpack_server_path} --display minimal --display-chunks --env.target=node --mode ${env}`, { stdio: [0, 1, 2] })
 
-        execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/index.jsx`);
+        execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
 
         utils.log_progress('copying libs folder...');
         fs.copySync(inRootDir('libs'), inBuildPath('libs'));
@@ -70,15 +72,12 @@ function build() {
             const debug_out_file = path.join(pluginFolder, '.debug');
             fs.writeFileSync(debug_out_file, rendered_debug, 'utf-8');
         }
-        console.log(chalk.hex('61AFEF')(`DONE`))
+        const endTime = Date.now();
+        let timeDiff = endTime - startTime;
+        timeDiff /= 1000;
+        console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
 
     } catch (err) {
         utils.log_error(err)
     }
 }
-
-const endTime = Date.now();
-let timeDiff = endTime - startTime;
-timeDiff /= 1000;
-
-console.log(chalk["cyan"].dim(`${timeDiff}s`))

@@ -9,8 +9,11 @@ const log_error = (val) => {
 }
 
 const log_progress = (val, color) => {
-    let c = color ? color : "yellow";
-    console.log(chalk[c](val));
+    if (color) {
+        console.log(chalk[color](val))
+    } else {
+        console.log(chalk.hex("ffff7e")(val));
+    }
 }
 
 const resolveWindows = () => {

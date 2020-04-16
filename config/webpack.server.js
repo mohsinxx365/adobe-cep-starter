@@ -7,7 +7,7 @@ const server_output = path.join(buildFolder, 'server')
 const server_entry = path.join(pluginConfig.root, 'server/')
 const server_file = path.join(server_entry, 'index.ts')
 
-module.exports = (env) => ({
+module.exports = ({
     entry: server_file,
     target: 'node',
     externals: [nodeExternals({ modulesDir: path.join(server_entry, 'node_modules') })],
