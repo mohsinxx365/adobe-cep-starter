@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.client.js --env.target=web --mode development --open",
-    "client": "webpack --config ./config/webpack.client.js   --display minimal --display-chunks --env.target=node --mode development",
-    "tsc": "tsc -p ./host/tsconfig.json",
-    "build": "node ./config/scripts/build.js development"
+    "build:dev": "node ./config/scripts/build.js development && node ./config/scripts/deploy.js development",
+    "build:prod": "node ./config/scripts/build.js production && node ./config/scripts/deploy.js production"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +26,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "chalk": "^4.0.0",
+    "concurrently": "^5.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.1",
     "extract-text-webpack-plugin": "^3.0.2",

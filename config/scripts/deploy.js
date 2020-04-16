@@ -10,13 +10,36 @@ const isDev = env === "development";
 const isWindows = utils.resolveWindows();
 const extensionBundleId = pluginConfig.extensionBundleId;
 const resolvedTargetFolder = resolveDeploymentFolder();
+const chalk = require('chalk')
 
 
-const resolveDeploymentFolder = () => {
+const startTime = Date.now();
+deploy();
+
+function deploy() {
+    console.log(chalk.hex('6bb9f0')(`DEPLOY FOR ${env}`));
+    cleanTarget(resolvedTargetFolder);
+
+    if (isDev)
+        deployDevMode()
+    else
+        deployProdMode()
+
+    printDeploymentFolder()
+
+    const endTime = Date.now();
+    let timeDiff = endTime - startTime;
+    timeDiff /= 1000;
+    console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`))
+}
+
+
+
+function resolveDeploymentFolder() {
     return path.join(resolveExtensionFolder(), extensionBundleId)
 }
 
-const resolveExtensionFolder = () => {
+function resolveExtensionFolder() {
     if (isWindows) {
         const extensionsPath = os.userInfo().homedir + '\\AppData\\Roaming\\Adobe\\CEP\\extensions'
         if (!fs.existsSync(extensionsPath))
@@ -29,7 +52,7 @@ const resolveExtensionFolder = () => {
 }
 
 
-const cleanTarget = (target) => {
+function cleanTarget(target) {
     utils.log_progress('cleaning target...');
 
     try {
@@ -41,7 +64,7 @@ const cleanTarget = (target) => {
     }
 }
 
-const deployDevMode = () => {
+function deployDevMode() {
     try {
         utils.log_progress('patching')
         if (isWindows) {
@@ -56,7 +79,7 @@ const deployDevMode = () => {
     }
 }
 
-const deployProdMode = () => {
+function deployProdMode() {
     utils.log_progress('copying into extensions folder')
     try {
         fs.copySync(buildFolder, resolvedTargetFolder)
@@ -66,18 +89,6 @@ const deployProdMode = () => {
     }
 }
 
-const printDeploymentFolder = () => {
-    utils.log_progress(`deployed to folder ${resolvedTargetFolder}`, 'green')
-    console.log(chalk.hex('23D18B')(`deployed to folder ${resolvedTargetFolder}`));
-}
-
-const deploy = () => {
-    console.log(chalk.hex('6bb9f0')(`DEPLOY FOR ${env}`));
-    cleanTarget(resolvedTargetFolder);
-
-    if (isDev) deployDevMode()
-    else deployProdMode();
-
-    printDeploymentFolder()
-    console.log(chalk.hex('23D18B')(`DONE`));
+function printDeploymentFolder() {
+    console.log(chalk.hex('f7ca18')(`deployed to folder ${resolvedTargetFolder}`));
 }
