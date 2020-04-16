@@ -2,6 +2,7 @@ const { execSync } = require("child_process");
 const fs = require("fs-extra");
 const os = require('os');
 const path = require("path");
+const chalk = require('chalk');
 const utils = require('./utils.js');
 const pluginConfig = require('../../pluginrc.js');
 const buildFolder = path.join(pluginConfig.destinationFolder, pluginConfig.extensionBundleId);
@@ -10,7 +11,7 @@ const isDev = env === "development";
 const isWindows = utils.resolveWindows();
 const extensionBundleId = pluginConfig.extensionBundleId;
 const resolvedTargetFolder = resolveDeploymentFolder();
-const chalk = require('chalk')
+
 
 
 const startTime = Date.now();
@@ -90,5 +91,5 @@ function deployProdMode() {
 }
 
 function printDeploymentFolder() {
-    console.log(chalk.hex('f7ca18')(`deployed to folder ${resolvedTargetFolder}`));
+    console.log(chalk.hex('f7ca18')(`Deployed to folder ${resolvedTargetFolder}`));
 }
