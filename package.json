@@ -40,6 +40,7 @@
     "sass-loader": "^8.0.2",
     "source-map": "^0.7.3",
     "ts-loader": "^6.2.2",
+    "types-for-adobe": "^1.6.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",

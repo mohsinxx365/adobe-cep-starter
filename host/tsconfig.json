@@ -11,7 +11,10 @@
         "target": "es3",
         "removeComments": true,
         "skipLibCheck": true,
-        "noImplicitUseStrict": true
+        "noImplicitUseStrict": true,
+        "types": [
+            "types-for-adobe/AfterEffects/2018"
+        ]
     },
     "exclude": [
         "node_modules"
