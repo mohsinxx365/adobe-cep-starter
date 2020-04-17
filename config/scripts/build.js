@@ -13,6 +13,7 @@ const templatesFolder = path.join(__dirname, '../assets/templates');
 const webpack_client_path = path.join(__dirname, '../webpack.client.js');
 const webpack_server_path = path.join(__dirname, '../webpack.server.js');
 const host_config_path = path.join(__dirname, '../../host/tsconfig.json');
+const webpack = require('webpack')
 
 const startTime = Date.now();
 
@@ -41,10 +42,34 @@ function build() {
         }
 
         utils.log_progress('bundeling client...');
-        execSync(`webpack --config ${webpack_client_path}  --display minimal --display-chunks --env.target=node --mode ${env}`, { stdio: [0, 1, 2] })
+        var clientConfig = require('../webpack.client.js')
+        webpack(clientConfig, (err, stats) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            console.log(stats.toString({
+                errors: true,
+                colors: true,
+                all: false
+            }));
+        });
 
         utils.log_progress('bundeling server...')
-        execSync(`webpack --config ${webpack_server_path} --display minimal --display-chunks --env.target=node --mode ${env}`, { stdio: [0, 1, 2] })
+        var serverConfig = require('../webpack.server.js')
+        webpack(serverConfig, (err, stats) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            console.log(stats.toString({
+                errors: true,
+                colors: true,
+                all: false
+            }));
+        });
 
         execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
 

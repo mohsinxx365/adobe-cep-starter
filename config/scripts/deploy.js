@@ -17,7 +17,7 @@ const startTime = Date.now();
 deploy();
 
 function deploy() {
-    console.log(chalk.hex('6bb9f0')(`DEPLOY FOR ${env}`));
+    console.log(chalk.hex('6bb9f0')(`DEPLOY FOR ${env.toUpperCase()}`));
     cleanTarget(resolvedTargetFolder);
 
     if (isDev)
