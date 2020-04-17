@@ -8,10 +8,12 @@ class ScriptLoader {
     }
 
     get cs(): any {
-        return this.cs
+        //@ts-ignore
+        return this._cs
     }
     set cs(val: any) {
-        this.cs = val
+        //@ts-ignore
+        this._cs = val
     }
 
     log(val: string) {

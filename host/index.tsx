@@ -1,1 +1,3 @@
-alert('hello ts');
+function test(val) {
+    alert(val)
+}
