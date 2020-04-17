@@ -3,6 +3,7 @@ import React from 'react'
 
 const App = () => {
     let test = () => {
+        //@ts-ignore
         window.session.test('hello')
     };
 
