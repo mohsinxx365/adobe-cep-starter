@@ -10,8 +10,6 @@ const buildFolder = pluginConfig.destinationFolder;
 const pluginFolder = path.join(buildFolder, pluginConfig.extensionBundleId);
 const rootFolder = pluginConfig.root;
 const templatesFolder = path.join(__dirname, '../assets/templates');
-const webpack_client_path = path.join(__dirname, '../webpack.client.js');
-const webpack_server_path = path.join(__dirname, '../webpack.server.js');
 const host_config_path = path.join(__dirname, '../../host/tsconfig.json');
 const webpack = require('webpack')
 
@@ -32,7 +30,7 @@ build();
 function build() {
     try {
 
-        utils.log_progress('build folder....');
+        utils.log_progress('preparing build folder....');
 
         if (!fs.existsSync(buildFolder)) {
             fs.mkdirSync(buildFolder);

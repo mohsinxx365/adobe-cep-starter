@@ -84,6 +84,5 @@ function signPackage(cert) {
             if (error) reject(error)
             else resolve(result)
         })
-
     })
 }
