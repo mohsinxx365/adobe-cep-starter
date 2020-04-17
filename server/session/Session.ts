@@ -23,6 +23,10 @@ class Session {
         return scriptLoader
     }
 
+    test(val: any) {
+        scriptLoader.evalScript("test", val)
+    }
+
     init() {
         this._managers.init();
         this.log("session has initiated");
