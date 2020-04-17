@@ -15,7 +15,7 @@ const startTime = Date.now();
 archive()
 
 function archive() {
-    console.log(chalk.hex('6bb9f0')(`ARCHIVE`));
+    console.log(chalk.hex('6bb9f0')(`\nARCHIVE`));
     prepareCert()
         .then(signPackage)
         .then(res => {

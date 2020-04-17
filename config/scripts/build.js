@@ -48,12 +48,6 @@ function build() {
                 console.error(err);
                 return;
             }
-
-            console.log(stats.toString({
-                errors: true,
-                colors: true,
-                all: false
-            }));
         });
 
         utils.log_progress('bundeling server...')
@@ -63,12 +57,6 @@ function build() {
                 console.error(err);
                 return;
             }
-
-            console.log(stats.toString({
-                errors: true,
-                colors: true,
-                all: false
-            }));
         });
 
         execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
