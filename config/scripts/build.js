@@ -62,19 +62,17 @@ async function build() {
         utils.log_progress('converting host to jsx...')
         execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
 
-        if (!isDev) {
-            utils.log_progress('converting jsx to jsxbin...')
-            await jsxbin(`${pluginFolder}/host/index.jsx`, `${pluginFolder}/host/index.jsxbin`)
-                .catch(err => {
-                    utils.log_error(err)
-                })
+        utils.log_progress('converting jsx to jsxbin...')
+        await jsxbin(`${pluginFolder}/host/index.jsx`, `${pluginFolder}/host/index.jsxbin`)
+            .catch(err => {
+                utils.log_error(err)
+            })
 
-            utils.log_progress('deleting jsx code...');
-            fs.removeSync(`${pluginFolder}/host/index.jsx`)
+        utils.log_progress('deleting jsx code...');
+        fs.removeSync(`${pluginFolder}/host/index.jsx`)
 
-            utils.log_progress('converting .jsxbin to .jsx')
-            fs.renameSync(`${pluginFolder}/host/index.jsxbin`, `${pluginFolder}/host/index.jsx`)
-        }
+        utils.log_progress('converting .jsxbin to .jsx')
+        fs.renameSync(`${pluginFolder}/host/index.jsxbin`, `${pluginFolder}/host/index.jsx`)
 
         utils.log_progress('copying libs folder...');
         fs.copySync(inRootDir('libs'), inBuildPath('libs'));
