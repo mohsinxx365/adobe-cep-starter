@@ -31,7 +31,7 @@ build();
 
 async function build() {
 	try {
-		let spinner = ora('preparing build folder....');
+		let spinner = ora('Prepare build folder');
 		spinner.start();
 
 		if (!fs.existsSync(buildFolder)) {
@@ -42,7 +42,7 @@ async function build() {
 		}
 		spinner.succeed();
 
-		spinner = ora('bundeling client...');
+		spinner = ora('Bundle client');
 		var clientConfig = require('../webpack.client.js');
 		await webpack(clientConfig, (err, stats) => {
 			if (err) {
@@ -52,7 +52,7 @@ async function build() {
 		});
 		spinner.succeed();
 
-		spinner = ora('bundeling server...');
+		spinner = ora('Bundle server');
 		var serverConfig = require('../webpack.server.js');
 		await webpack(serverConfig, (err, stats) => {
 			if (err) {
@@ -62,37 +62,37 @@ async function build() {
 		});
 		spinner.succeed();
 
-		spinner = ora('converting host to jsx...').start();
+		spinner = ora('Convert host to jsx...').start();
 		execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
 		spinner.succeed();
 
-		spinner = ora('converting jsx to jsxbin...').start();
+		spinner = ora('Convert jsx to jsxbin').start();
 		await jsxbin(`${pluginFolder}/host/index.jsx`, `${pluginFolder}/host/index.jsxbin`).catch((err) => {
 			utils.log_error(err);
 		});
 		spinner.succeed();
 
-		spinner = ora('deleting jsx code...').start();
+		spinner = ora('Delete jsx code').start();
 		fs.removeSync(`${pluginFolder}/host/index.jsx`);
 		spinner.succeed();
 
-		spinner = ora('converting .jsxbin to .jsx').start();
+		spinner = ora('Convert .jsxbin to .jsx').start();
 		fs.renameSync(`${pluginFolder}/host/index.jsxbin`, `${pluginFolder}/host/index.jsx`);
 		spinner.succeed();
 
-		spinner = ora('copying libs folder...').start();
+		spinner = ora('Copying libs folder').start();
 		fs.copySync(inRootDir('libs'), inBuildPath('libs'));
 		spinner.succeed();
 
-		spinner = ora('copying index.html...').start();
+		spinner = ora('Copy index.html').start();
 		fs.copySync(inRootDir('index.html'), inBuildPath('index.html'));
 		spinner.succeed();
 
-		spinner = ora('copying adobe assets').start();
+		spinner = ora('Copy adobe assets').start();
 		fs.copySync(path.resolve(__dirname, '../assets/icons'), pluginFolder);
 		spinner.succeed();
 
-		spinner = ora('rendering manifest.xml...').start();
+		spinner = ora('Rendering manifest.xml').start();
 		const manifest_template = require(path.join(templatesFolder, 'manifest.template.xml.js'));
 		const rendered_xml = manifest_template(pluginConfig);
 		var xml_out_dir = path.join(pluginFolder, 'CSXS');
@@ -104,7 +104,7 @@ async function build() {
 		spinner.succeed();
 
 		if (isDev) {
-			spinner = ora('rendering .debug file...').start();
+			spinner = ora('Rendering .debug file').start();
 			const debug_template = require(path.join(templatesFolder, '.debug.template.js'));
 			const rendered_debug = debug_template(pluginConfig);
 			const debug_out_file = path.join(pluginFolder, '.debug');

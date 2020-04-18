@@ -51,7 +51,7 @@ function resolveExtensionFolder() {
 }
 
 function cleanTarget(target) {
-	let spinner = ora('cleaning target...');
+	let spinner = ora('Clean target');
 	try {
 		if (fs.existsSync(target) && fs.lstatSync(target).isSymbolicLink()) fs.unlinkSync(target);
 		fs.removeSync(target);
@@ -63,7 +63,7 @@ function cleanTarget(target) {
 
 function deployDevMode() {
 	try {
-		let spinner = ora('patching...').start();
+		let spinner = ora('Apply Patch').start();
 		if (isWindows) {
 			execSync('REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.8 /v PlayerDebugMode /t REG_SZ /d 1 /f'); // CC 2018
 			execSync('REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.9 /v PlayerDebugMode /t REG_SZ /d 1 /f'); // CC 2019 & 2020
@@ -76,7 +76,7 @@ function deployDevMode() {
 		utils.log_error(err);
 	}
 
-	spinner = ora('creating symlink into extensions folder...').start();
+	spinner = ora('Creating symlink into extensions folder').start();
 
 	try {
 		var type = isWindows ? 'junction' : 'dir';
