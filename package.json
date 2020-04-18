@@ -1,7 +1,7 @@
 {
 	"name": "cep_starter",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A starter template for making cep extensions",
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --config ./config/webpack.client.js --env.target=web --mode development --open",
@@ -41,7 +41,6 @@
 		"ora": "^4.0.3",
 		"sass-loader": "^8.0.2",
 		"source-map": "^0.7.3",
-		"ts-loader": "^6.2.2",
 		"types-for-adobe": "^1.6.1",
 		"typescript": "^3.8.3",
 		"webpack": "^4.42.1",
