@@ -3,6 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 const jsxbin = require('jsxbin');
 const webpack = require('webpack');
+const ora = require('ora');
 const { execSync } = require('child_process');
 const pluginConfig = require('../../pluginrc');
 const utils = require('./utils.js');
@@ -30,7 +31,8 @@ build();
 
 async function build() {
 	try {
-		utils.log_progress('preparing build folder....');
+		let spinner = ora('preparing build folder....');
+		spinner.start();
 
 		if (!fs.existsSync(buildFolder)) {
 			fs.mkdirSync(buildFolder);
@@ -38,8 +40,9 @@ async function build() {
 			fs.emptyDirSync(buildFolder);
 			fs.mkdirSync(pluginFolder);
 		}
+		spinner.succeed();
 
-		utils.log_progress('bundeling client...');
+		spinner = ora('bundeling client...');
 		var clientConfig = require('../webpack.client.js');
 		await webpack(clientConfig, (err, stats) => {
 			if (err) {
@@ -47,8 +50,9 @@ async function build() {
 				return;
 			}
 		});
+		spinner.succeed();
 
-		utils.log_progress('bundeling server...');
+		spinner = ora('bundeling server...');
 		var serverConfig = require('../webpack.server.js');
 		await webpack(serverConfig, (err, stats) => {
 			if (err) {
@@ -56,31 +60,39 @@ async function build() {
 				return;
 			}
 		});
+		spinner.succeed();
 
-		utils.log_progress('converting host to jsx...');
+		spinner = ora('converting host to jsx...').start();
 		execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
+		spinner.succeed();
 
-		utils.log_progress('converting jsx to jsxbin...');
+		spinner = ora('converting jsx to jsxbin...').start();
 		await jsxbin(`${pluginFolder}/host/index.jsx`, `${pluginFolder}/host/index.jsxbin`).catch((err) => {
 			utils.log_error(err);
 		});
+		spinner.succeed();
 
-		utils.log_progress('deleting jsx code...');
+		spinner = ora('deleting jsx code...').start();
 		fs.removeSync(`${pluginFolder}/host/index.jsx`);
+		spinner.succeed();
 
-		utils.log_progress('converting .jsxbin to .jsx');
+		spinner = ora('converting .jsxbin to .jsx').start();
 		fs.renameSync(`${pluginFolder}/host/index.jsxbin`, `${pluginFolder}/host/index.jsx`);
+		spinner.succeed();
 
-		utils.log_progress('copying libs folder...');
+		spinner = ora('copying libs folder...').start();
 		fs.copySync(inRootDir('libs'), inBuildPath('libs'));
+		spinner.succeed();
 
-		utils.log_progress('copying index.html...');
+		spinner = ora('copying index.html...').start();
 		fs.copySync(inRootDir('index.html'), inBuildPath('index.html'));
+		spinner.succeed();
 
-		utils.log_progress('copying adobe assets');
+		spinner = ora('copying adobe assets').start();
 		fs.copySync(path.resolve(__dirname, '../assets/icons'), pluginFolder);
+		spinner.succeed();
 
-		utils.log_progress('rendering manifest.xml...');
+		spinner = ora('rendering manifest.xml...').start();
 		const manifest_template = require(path.join(templatesFolder, 'manifest.template.xml.js'));
 		const rendered_xml = manifest_template(pluginConfig);
 		var xml_out_dir = path.join(pluginFolder, 'CSXS');
@@ -89,13 +101,15 @@ async function build() {
 			if (err) throw err;
 		});
 		fs.writeFileSync(xml_out_file, rendered_xml, 'utf-8');
+		spinner.succeed();
 
 		if (isDev) {
-			utils.log_progress('rendering .debug file...');
+			spinner = ora('rendering .debug file...').start();
 			const debug_template = require(path.join(templatesFolder, '.debug.template.js'));
 			const rendered_debug = debug_template(pluginConfig);
 			const debug_out_file = path.join(pluginFolder, '.debug');
 			fs.writeFileSync(debug_out_file, rendered_debug, 'utf-8');
+			spinner.succeed();
 		}
 		const endTime = Date.now();
 		let timeDiff = endTime - startTime;

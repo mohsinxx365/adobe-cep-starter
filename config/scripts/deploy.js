@@ -11,6 +11,7 @@ const isDev = env === 'development';
 const isWindows = utils.resolveWindows();
 const extensionBundleId = pluginConfig.extensionBundleId;
 const resolvedTargetFolder = resolveDeploymentFolder();
+const ora = require('ora');
 
 const startTime = Date.now();
 deploy();
@@ -50,10 +51,11 @@ function resolveExtensionFolder() {
 }
 
 function cleanTarget(target) {
-	utils.log_progress('cleaning target...');
+	let spinner = ora('cleaning target...');
 	try {
 		if (fs.existsSync(target) && fs.lstatSync(target).isSymbolicLink()) fs.unlinkSync(target);
 		fs.removeSync(target);
+		spinner.succeed();
 	} catch (err) {
 		utils.log_error(err);
 	}
@@ -61,7 +63,7 @@ function cleanTarget(target) {
 
 function deployDevMode() {
 	try {
-		utils.log_progress('patching...');
+		let spinner = ora('patching...').start();
 		if (isWindows) {
 			execSync('REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.8 /v PlayerDebugMode /t REG_SZ /d 1 /f'); // CC 2018
 			execSync('REG ADD HKEY_CURRENT_USER\\Software\\Adobe\\CSXS.9 /v PlayerDebugMode /t REG_SZ /d 1 /f'); // CC 2019 & 2020
@@ -69,25 +71,28 @@ function deployDevMode() {
 			execSync('defaults write com.adobe.CSXS.8 PlayerDebugMode 1', { stdio: [ 0, 1, 2 ] }); // CC 2018
 			execSync('defaults write com.adobe.CSXS.9 PlayerDebugMode 1', { stdio: [ 0, 1, 2 ] }); // CC 2019 & 2020
 		}
+		spinner.succeed();
 	} catch (err) {
 		utils.log_error(err);
 	}
 
-	utils.log_progress('creating symlink into extensions folder...');
+	spinner = ora('creating symlink into extensions folder...').start();
 
 	try {
 		var type = isWindows ? 'junction' : 'dir';
 
 		fs.symlinkSync(buildFolder, resolvedTargetFolder, type);
+		spinner.succeed();
 	} catch (err) {
 		utils.log_error(err);
 	}
 }
 
 function deployProdMode() {
-	utils.log_progress('copying into extensions folder...');
+	let spinner = ora('copying into extensions folder...').start();
 	try {
 		fs.copySync(buildFolder, resolvedTargetFolder);
+		spinner.succeed();
 	} catch (err) {
 		utils.log_error(err);
 	}
