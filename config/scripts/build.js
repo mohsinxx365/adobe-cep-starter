@@ -12,6 +12,8 @@ const rootFolder = pluginConfig.root;
 const templatesFolder = path.join(__dirname, '../assets/templates');
 const host_config_path = path.join(__dirname, '../../host/tsconfig.json');
 const webpack = require('webpack')
+const jsxbin = require('jsxbin');
+
 
 const startTime = Date.now();
 
@@ -27,7 +29,7 @@ console.log(chalk.hex('6bb9f0')(`BUILD FOR ${env.toUpperCase()}`));
 
 build();
 
-function build() {
+async function build() {
     try {
 
         utils.log_progress('preparing build folder....');
@@ -41,7 +43,7 @@ function build() {
 
         utils.log_progress('bundeling client...');
         var clientConfig = require('../webpack.client.js')
-        webpack(clientConfig, (err, stats) => {
+        await webpack(clientConfig, (err, stats) => {
             if (err) {
                 console.error(err);
                 return;
@@ -50,14 +52,29 @@ function build() {
 
         utils.log_progress('bundeling server...')
         var serverConfig = require('../webpack.server.js')
-        webpack(serverConfig, (err, stats) => {
+        await webpack(serverConfig, (err, stats) => {
             if (err) {
                 console.error(err);
                 return;
             }
         });
 
+        utils.log_progress('converting host to jsx...')
         execSync(`tsc -p ${host_config_path} --outFile ${pluginFolder}/host/index.jsx`);
+
+        if (!isDev) {
+            utils.log_progress('converting jsx to jsxbin...')
+            await jsxbin(`${pluginFolder}/host/index.jsx`, `${pluginFolder}/host/index.jsxbin`)
+                .catch(err => {
+                    utils.log_error(err)
+                })
+
+            utils.log_progress('deleting jsx code...');
+            fs.removeSync(`${pluginFolder}/host/index.jsx`)
+
+            utils.log_progress('converting .jsxbin to .jsx')
+            fs.renameSync(`${pluginFolder}/host/index.jsxbin`, `${pluginFolder}/host/index.jsx`)
+        }
 
         utils.log_progress('copying libs folder...');
         fs.copySync(inRootDir('libs'), inBuildPath('libs'));
