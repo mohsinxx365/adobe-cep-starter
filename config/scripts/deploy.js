@@ -17,7 +17,7 @@ const startTime = Date.now();
 deploy();
 
 function deploy() {
-	console.log(chalk.hex('6bb9f0')(`\nDEPLOY FOR ${env.toUpperCase()}`));
+	console.log(chalk.hex('6bb9f0')(`\nDEPLOY - ${env.toUpperCase()}`));
 	cleanTarget(resolvedTargetFolder);
 
 	if (isDev) deployDevMode();
@@ -28,7 +28,7 @@ function deploy() {
 	const endTime = Date.now();
 	let timeDiff = endTime - startTime;
 	timeDiff /= 1000;
-	console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`));
+	console.log(chalk.hex('23D18B')(`Time: ${timeDiff}s`));
 }
 
 function printDeploymentFolder() {

@@ -25,7 +25,7 @@ const inRootDir = (val) => {
 	return path.join(rootFolder, val);
 };
 
-console.log(chalk.hex('6bb9f0')(`BUILD FOR ${env.toUpperCase()}`));
+console.log(chalk.hex('6bb9f0')(`BUILD - ${env.toUpperCase()}`));
 
 build();
 
@@ -114,7 +114,7 @@ async function build() {
 		const endTime = Date.now();
 		let timeDiff = endTime - startTime;
 		timeDiff /= 1000;
-		console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`));
+		console.log(chalk.hex('23D18B')(`Time: ${timeDiff}s`));
 	} catch (err) {
 		utils.log_error(err);
 	}

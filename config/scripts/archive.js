@@ -24,7 +24,7 @@ function archive() {
 			let timeDiff = endTime - startTime;
 			timeDiff /= 1000;
 			console.log(chalk.hex('f7ca18')(`Package is signed: ${zxpFile}`));
-			console.log(chalk.hex('23D18B')(`DONE IN ${timeDiff}s`));
+			console.log(chalk.hex('23D18B')(`Time: ${timeDiff}s`));
 		})
 		.catch((err) => {
 			utils.log_error(err);
