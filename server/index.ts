@@ -1,4 +1,4 @@
-import session from './session/Session'
+import session from './session/Session';
 
 //@ts-ignore
 window.session = session;

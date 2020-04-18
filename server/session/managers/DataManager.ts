@@ -1,18 +1,18 @@
-import LogManager from "./LogManager";
+import LogManager from './LogManager';
 
 class DataManagers {
-    _manager_log: any = undefined
+	_manager_log: any = undefined;
 
-    constructor() { }
+	constructor() {}
 
-    init() {
-        this._manager_log = new LogManager();
-        this._manager_log.init();
-    }
+	init() {
+		this._manager_log = new LogManager();
+		this._manager_log.init();
+	}
 
-    get log() {
-        return this._manager_log;
-    }
+	get log() {
+		return this._manager_log;
+	}
 }
 
-export default DataManagers
+export default DataManagers;

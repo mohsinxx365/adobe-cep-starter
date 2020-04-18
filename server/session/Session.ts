@@ -2,35 +2,35 @@ import scriptLoader from './ScriptLoader';
 import DataManagers from './managers/DataManager';
 
 class Session {
-    _managers = new DataManagers();
+	_managers = new DataManagers();
 
-    constructor() {
-        this.init()
-    }
+	constructor() {
+		this.init();
+	}
 
-    log(val: string) {
-        console.log(`${this.name} ${val}`);
-    }
-    get name() {
-        return "Session:: ";
-    }
+	log(val: string) {
+		console.log(`${this.name} ${val}`);
+	}
+	get name() {
+		return 'Session:: ';
+	}
 
-    get managers() {
-        return this._managers
-    }
+	get managers() {
+		return this._managers;
+	}
 
-    scriptLoader() {
-        return scriptLoader
-    }
+	scriptLoader() {
+		return scriptLoader;
+	}
 
-    test(val: any) {
-        scriptLoader.evalScript("test", val)
-    }
+	test(val: any) {
+		scriptLoader.evalScript('test', val);
+	}
 
-    init() {
-        this._managers.init();
-        this.log("session has initiated");
-    }
+	init() {
+		this._managers.init();
+		this.log('session has initiated');
+	}
 }
 
 let session = new Session();

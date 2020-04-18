@@ -7,7 +7,7 @@ const client_output = path.resolve(buildFolder, 'client');
 const client_entry = path.resolve(__dirname, '../client/index.tsx');
 const html_template = path.join(__dirname, './assets/templates/index.template.html');
 
-module.exports = ({
+module.exports = {
 	entry: client_entry,
 	target: 'web',
 	module: {
@@ -20,10 +20,15 @@ module.exports = ({
 						loader: 'babel-loader',
 						options: {
 							presets: [
-								['@babel/preset-env', {
-									"ignoreBrowserslistConfig": true,
-
-								}], '@babel/preset-react', '@babel/preset-typescript'],
+								[
+									'@babel/preset-env',
+									{
+										ignoreBrowserslistConfig: true
+									}
+								],
+								'@babel/preset-react',
+								'@babel/preset-typescript'
+							],
 							plugins: [
 								[
 									'@babel/plugin-proposal-decorators',
@@ -49,7 +54,7 @@ module.exports = ({
 			},
 			{
 				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader']
+				use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
 			},
 			{
 				test: /\.module\.s(a|c)ss$/,
@@ -67,12 +72,12 @@ module.exports = ({
 			{
 				test: /\.s(a|c)ss$/,
 				exclude: /\.module.(s(a|c)ss)$/,
-				loader: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+				loader: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
 			}
 		]
 	},
 	resolve: {
-		extensions: ['*', '.js', '.jsx', 'tsx', 'ts', '.scss']
+		extensions: [ '*', '.js', '.jsx', 'tsx', 'ts', '.scss' ]
 	},
 	output: {
 		path: client_output,
@@ -94,6 +99,6 @@ module.exports = ({
 			inject: 'body',
 			title: 'HTML Webpack Plugin',
 			bar: 'bar'
-		}),
+		})
 	]
-});
+};
