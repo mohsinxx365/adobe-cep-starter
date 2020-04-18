@@ -92,7 +92,7 @@ async function build() {
 		fs.copySync(path.resolve(__dirname, '../assets/icons'), pluginFolder);
 		spinner.succeed();
 
-		spinner = ora('Rendering manifest.xml').start();
+		spinner = ora('Render manifest.xml').start();
 		const manifest_template = require(path.join(templatesFolder, 'manifest.template.xml.js'));
 		const rendered_xml = manifest_template(pluginConfig);
 		var xml_out_dir = path.join(pluginFolder, 'CSXS');
@@ -104,7 +104,7 @@ async function build() {
 		spinner.succeed();
 
 		if (isDev) {
-			spinner = ora('Rendering .debug file').start();
+			spinner = ora('Render .debug file').start();
 			const debug_template = require(path.join(templatesFolder, '.debug.template.js'));
 			const rendered_debug = debug_template(pluginConfig);
 			const debug_out_file = path.join(pluginFolder, '.debug');
