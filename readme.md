@@ -3,11 +3,11 @@
 
 - 📦 Out of the box support for:
 
->        ✔ Typescript
->        ✔ Nodejs
->        ✔ Css & css modules
->        ✔ Scss & scss modules
->        ✔ Converting jsx to jsxbin
+>     ✔ Typescript
+>     ✔ Nodejs
+>     ✔ Css & css modules
+>     ✔ Scss & scss modules
+>     ✔ Converting jsx to jsxbin
 
 - ✂️ Zero configuration required
 
