@@ -1,4 +1,4 @@
-# Cep Starter Kit with React & Typescript
+# Adobe Cep  Extension -  React & Typescript
 
 This is a "starter kit" for developing CEP Panels.
 
