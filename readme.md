@@ -1,23 +1,8 @@
+# Reactjs & typescript Cep Starter
 
-## Features
-
-- 📦 Out of the box support for:
-
-      ✔  Nodejs
-      ✔  Typescript
-      ✔  Css & css modules
-      ✔  Scss & scss modules
-      ✔  Converting jsx to jsxbin
-
-- ✂️ Zero configuration required
-
-- 🚨 Friendly error logging experience
-
-
-
+This is a "starter template" for developing CEP panels
 
 This Adobe CEP extension creator bootstraps for creating Adobe CC extensions easily with typescript, native node.js modules for server & session logic and with support for writing host scripts with typescript.
-
 
 
 #### Scripts
