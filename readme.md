@@ -12,7 +12,7 @@ This Template does a bunch of things to make your life easier:
 - Create a `symlink` into the extensions folder so you can test out the extension quickly
 - Syncs your `node_modules`(**not** the `dev dependencies`) into the bundle
 - Copy Your assets (`fonts,svg's,css,scss` whatever you like) into the bundle
--
+
 
 
 ## Requirements:
@@ -36,7 +36,4 @@ npm install
 
 - `npm run release:dev`  : will build, deploy and archive the extension
 
-- `npm run release:prod`  : will build and deploy the extension 
-
-  
-
+- `npm run release:prod`  : will build and deploy the extension
