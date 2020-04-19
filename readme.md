@@ -15,7 +15,7 @@ This Template does a bunch of things to make your life easier:
 
 
 
-### Requirements: 
+## Requirements: 
 
 - node.js
 
@@ -23,7 +23,7 @@ This Template does a bunch of things to make your life easier:
 
   
 
-### Installing :
+## Installing :
 
 ``` shell 
 git clone git@github.com:adobe-extension-tools/cep-starter.git
@@ -33,7 +33,7 @@ npm install
 
 
 
-### Developing :
+## Developing :
 
 ```shell
 npm start
