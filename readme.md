@@ -1,5 +1,8 @@
-## Cep React Starter
-### Adobe CEP extension development with Reactjs , Typescript and other mordern Web Technologies
+## Features
+- 📦 Out of the box support for typescript & nodejs
+- ✂️ Zero configuration required
+- 🚨 Friendly error logging experience
+
 
 This Adobe CEP extension creator bootstraps for creating Adobe CC extensions easily with typescript, native node.js modules for server & session logic and with support for writing host scripts with typescript.
 
