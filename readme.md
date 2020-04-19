@@ -27,13 +27,7 @@ This Template does a bunch of things to make your life easier:
 
 ``` shell 
 git clone git@github.com:adobe-extension-tools/cep-starter.git
-```
-
-```shell
 cd cep-starter
-```
-
-```shell
 npm install
 ```
 
