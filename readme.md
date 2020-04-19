@@ -3,8 +3,8 @@
 
 - 📦 Out of the box support for:
 
-      ✔  Typescript
       ✔  Nodejs
+      ✔  Typescript
       ✔  Css & css modules
       ✔  Scss & scss modules
       ✔  Converting jsx to jsxbin
