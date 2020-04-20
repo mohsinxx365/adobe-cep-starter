@@ -1,8 +1,8 @@
-# Adobe Cep  Extension -  React & Typescript
+# Adobe Cep Starter
 
-This is a "starter kit" for developing CEP Panels.
+This is a "starter kit" for developing CEP Panels. 
 
-It relies on `webpack` and `npm scripts` to do the heavy lifting :
+It relies on `webpack` and `npm scripts` to do the heavy lifting 
 
 This Template does a bunch of things to make your life easier:
 
