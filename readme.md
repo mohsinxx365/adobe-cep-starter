@@ -9,7 +9,6 @@ This Template does a bunch of things to make your life easier:
 - Create the necessary xml files
 - Create a `symlink` into the extensions folder so you can test out the extension quickly
 - Syncs your `node_modules` (**not** the `dev dependencies`) into the bundle
-- Copy Your assets (`fonts,svg's,css,scss` whatever you like) into the bundle
 
 
 
