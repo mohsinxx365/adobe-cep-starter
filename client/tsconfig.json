@@ -1,18 +1,14 @@
 {
-    "compilerOptions": {
-        "jsx": "react",
-        "target": "es5",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "lib": [
-            "es2015",
-            "dom"
-        ],
-        "removeComments": true
-    },
-    "include": [
-        "./**/*"
-    ]
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es5",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "lib": ["es2015", "dom"],
+    "removeComments": true
+  },
+  "include": ["./**/*"]
 }
