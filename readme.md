@@ -21,7 +21,7 @@ This Template does a bunch of things to make your life easier:
 ## Installing :
 
 ``` shell
-git clone git@github.com:mohsinxx365/cep_starter.git
+git clone git@github.com:mohsinxx365/adobe-cep-starter.git
 
 cd adobe_cep_starter
 
