@@ -22,14 +22,18 @@ This Template does a bunch of things to make your life easier:
 ``` shell
 git clone git@github.com:mohsinxx365/cep_starter.git
 
-cd cep-starter
+cd adobe_cep_starter
+
+npm install
+
+cd server 
 
 npm install
 ```
 
 ## Developing :
 
-- `npm run serve` : runs the extension in the browser at localhost:8080 by default
+- `npm start` : runs the extension in the browser at localhost:8080 by default
 
 - `npm run release:dev`  : will build, deploy and archive the extension
 
