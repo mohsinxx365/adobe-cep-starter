@@ -1,26 +1,30 @@
-# Create Adobe Cep Extensions
+# 📚 Adobe Cep Starter
 
 > **React , Typescript , Nodejs , Extendscript & Webpack .**
 
-This is a "starter kit" for developing CEP Panels.
+This is a `starter kit` for developing CEP Panels.
 
 This Template does a bunch of things to make your life easier:
 
 - Compile our Typescript code into a single `.js` file.
+
 - Converts `Extendscript` to `jsxbin` .
+
 - Create the necessary xml files
+
 - Create a `symlink` into the extensions folder so you can test out the extension quickly
+
 - Syncs your `node_modules` (**not** the `dev dependencies`) into the bundle
 
 ## Step By Step Guide
 
 - Make Sure You Have The Following things downloaded
 
-```
- - node.js
+  ```
+   - node.js
 
- - npm
-```
+   - npm
+  ```
 
 - Run The Following Commands :
 
@@ -44,7 +48,7 @@ This Template does a bunch of things to make your life easier:
   npm install
   ```
 
-- You Can Configure the extension settings in the `pluginrc.js` File
+* You Can Configure the extension settings in the `pluginrc.js` File
 
   > 💡 Tip : You can can change all the words from `starter` to your `extension_name`
 
@@ -56,20 +60,22 @@ This Template does a bunch of things to make your life easier:
 These Commands are only available in the root directory of the project
 ```
 
-> ```shell
-> npm run release:dev
-> ```
+---
+
+```shell
+npm run release:dev
+```
 
 👆 This Will Generate a build folder in your project and Create a symlink in the adobe extension folder path , after running the above command you can "preview" your extension in your "adobe app"
 
-> ```shell
-> npm run release:prod
-> ```
+```shell
+npm run release:prod
+```
 
 👆 This will Generate a production Ready Build Folder And a signed Zxp File
 
-> ```shell
-> npm start
-> ```
+```shell
+npm start
+```
 
 👆 This will Run the project in the browser with hot reload functionality
