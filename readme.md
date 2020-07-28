@@ -62,7 +62,6 @@ This Template does a bunch of things to make your life easier:
 These Commands are only available in the root directory of the project
 ```
 
----
 
 👇 This will Run the project in the browser with hot reload functionality
 
