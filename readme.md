@@ -64,6 +64,12 @@ These Commands are only available in the root directory of the project
 
 ---
 
+👇 This will Run the project in the browser with hot reload functionality
+
+```shell
+npm start
+```
+
 👇 This Will Generate a build folder in your project and Create a symlink in the adobe extension folder path , after running the above command you can `preview` your extension in your `adobe app`
 
 ```shell
@@ -74,10 +80,4 @@ npm run release:dev
 
 ```shell
 npm run release:prod
-```
-
-👇 This will Run the project in the browser with hot reload functionality
-
-```shell
-npm start
 ```
