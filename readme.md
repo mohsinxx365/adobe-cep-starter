@@ -32,7 +32,9 @@ This Template does a bunch of things to make your life easier:
   ⚠ Note:
 
   Dont't Put This Project in the Adobe Extension Folder
+
   You Can Put This Project in your "desktop" or "documents" folder
+
   The Remaining Work Will Be taken Care by the build scripts.
   ```
 
@@ -62,20 +64,20 @@ These Commands are only available in the root directory of the project
 
 ---
 
+👇 This Will Generate a build folder in your project and Create a symlink in the adobe extension folder path , after running the above command you can `preview` your extension in your `adobe app`
+
 ```shell
 npm run release:dev
 ```
 
-👆 This Will Generate a build folder in your project and Create a symlink in the adobe extension folder path , after running the above command you can "preview" your extension in your "adobe app"
+👇 This will Generate a production Ready Build Folder And a signed Zxp File
 
 ```shell
 npm run release:prod
 ```
 
-👆 This will Generate a production Ready Build Folder And a signed Zxp File
+👇 This will Run the project in the browser with hot reload functionality
 
 ```shell
 npm start
 ```
-
-👆 This will Run the project in the browser with hot reload functionality
