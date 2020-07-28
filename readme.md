@@ -60,22 +60,16 @@ These Commands are only available in the root directory of the project
 > npm run release:dev
 > ```
 
-```
-👆 This Will Generate a build folder in your project and Create a symlink in the adobe extension folder path .after running the above command you can `preview` your extension in your `adobe app`
-```
+👆 This Will Generate a build folder in your project and Create a symlink in the adobe extension folder path , after running the above command you can "preview" your extension in your "adobe app"
 
 > ```shell
 > npm run release:prod
 > ```
 
-```
 👆 This will Generate a production Ready Build Folder And a signed Zxp File
-```
 
 > ```shell
 > npm start
 > ```
 
-```
 👆 This will Run the project in the browser with hot reload functionality
-```
